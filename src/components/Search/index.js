@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
-import { useState } from 'react';
-import { books } from '../Search/dataSearch';
+import { useEffect, useState } from 'react';
+import { getBooks } from "../../services/service";
 
 
 
@@ -48,6 +48,13 @@ const Result = styled.div`
 
 function Search() {
     const [searchedBooks, setSearchedBooks] = useState([])
+    const [ books, setBooks] = useState([])
+
+    useEffect( () => {
+       const booksAPI = getBooks()
+       setBooks(booksAPI)
+    }, [books])
+
 
     return(
         <SearchContainer>
