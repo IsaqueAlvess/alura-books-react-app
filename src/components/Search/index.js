@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
 import { useState } from 'react';
-import { livros } from '../Search/dataSearch';
+import { books } from '../Search/dataSearch';
 
 
 
@@ -24,12 +24,30 @@ const Subtitle = styled.h3`
     font-weight: 500;
     margin-bottom: 40px;
 `
+const Result = styled.div`
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    p{
+      width: 200px;  
+    }
+
+    img{
+        width: 100px;
+    }
+
+
+    &:hover{
+        border: 1px solid gray;
+    }
+`
 
 function Search() {
     const [searchedBooks, setSearchedBooks] = useState([])
-
-    console.log(searchedBooks)
 
     return(
         <SearchContainer>
@@ -39,11 +57,16 @@ function Search() {
                 placeholder="Find your next book"
                 onBlur={ event => {
                     const typedText = event.target.value
-                    const searchResult = livros.filter( livro => livro.name.includes(typedText))
+                    const searchResult = books.filter( book => book.name.includes(typedText))
                     setSearchedBooks(searchResult);
                 }}
             />
-            
+            { searchedBooks.map( book => (
+                <Result>
+                    <img src={book.src} alt="book" />
+                    <p>{book.name}</p>                    
+                </Result>
+            ))}
         </SearchContainer>
     )
 }

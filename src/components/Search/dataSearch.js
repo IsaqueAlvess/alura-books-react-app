@@ -1,10 +1,10 @@
-import livro from '../../imgs/livro.png'
+import book from '../../imgs/livro.png'
 
 
-export const livros = [
-    {name: 'Liderança em Deisgn', id:1, src:livro},
-    {name: 'You dont know JS Yet', id:2, src:livro},
-    {name: 'JavaScript Assertivo', id:3, src:livro},
-    {name: 'Cangaceiro em Javascript', id:4, src:livro}
+export const books = [
+    {name: 'Liderança em Deisgn', id:1, src:book},
+    {name: 'Liderança em JavaScript', id:2, src:book},
+    {name: 'JavaScript Assertivo', id:3, src:book},
+    {name: 'Cangaceiro em Javascript', id:4, src:book}
 ];
 
