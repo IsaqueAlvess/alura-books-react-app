@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useEffect, useState } from 'react';
 import { getBooks } from "../../services/service";
 
-
-
 const SearchContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
     color: #FFF;
@@ -51,11 +49,16 @@ function Search() {
     const [ books, setBooks] = useState([])
 
     useEffect( () => {
-       const booksAPI = getBooks()
-       setBooks(booksAPI)
-    }, [books])
+        fetchBooks()
+    }, [])
 
+    
+    async function fetchBooks(){
+        const booksAPI = await getBooks()
+        setBooks(booksAPI)
+    }
 
+    
     return(
         <SearchContainer>
             <Title>Do you know where start?</Title>
@@ -70,7 +73,7 @@ function Search() {
             />
             { searchedBooks.map( book => (
                 <Result>
-                    <img src={book.src} alt="book" />
+                    {/* <img src={book.src} alt="book" /> */}
                     <p>{book.name}</p>                    
                 </Result>
             ))}

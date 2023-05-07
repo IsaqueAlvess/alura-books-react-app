@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL: "http://localhost:8000/livros"})
+const API = axios.create({baseURL: "http://localhost:8000/books"})
 
-function getBooks(){
-    const response = API.get('/')
-
+async function getBooks(){
+    const response = await API.get('/')
     return response.data
 }
 
