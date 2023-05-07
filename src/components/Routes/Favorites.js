@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getFavorites } from '../../services/favoritesService';
+import { deleteFavorite, getFavorites } from '../../services/favoritesService';
 import bookImg from '../../imgs/livro.png'
 
 const FavoritesContainer = styled.div`
@@ -52,6 +52,13 @@ function Favorites() {
     setFavorites(favoritesAPI)
   }
 
+  async function deleteFavoriteBook(id){
+    await deleteFavorite(id)
+    await fetchFavorites()
+    alert(`The book with ID ${id} was deleted successfully!`)
+  }
+
+  
   useEffect( () => {
     fetchFavorites()
   }, [])
@@ -64,7 +71,7 @@ function Favorites() {
           {
             favorites.length !== 0 ? favorites.map(favorite =>(
               
-              <Result>
+              <Result onClick={ () => deleteFavoriteBook(favorite.id)}>
                 
                 <img src={bookImg} alt="book"/>
                 <p>{favorite.name}</p>
